@@ -75,6 +75,10 @@ class Predictor(BasePredictor):
             default=None,
             description="optional text to provide as a prompt for the first window.",
         ),
+        word_timestamps: bool = Input(
+            default=True,
+            description="if True, timestamps are provided on a word by word basis",
+        ),
         condition_on_previous_text: bool = Input(
             default=True,
             description="if True, provide the previous output of the model as a prompt for the next window; disabling may make the text inconsistent across windows, but the model becomes less prone to getting stuck in a failure loop",
@@ -115,6 +119,7 @@ class Predictor(BasePredictor):
             "compression_ratio_threshold": compression_ratio_threshold,
             "logprob_threshold": logprob_threshold,
             "no_speech_threshold": no_speech_threshold,
+            "word_timestamps": word_timestamps,
             "fp16": True,
             "verbose": False
         }
